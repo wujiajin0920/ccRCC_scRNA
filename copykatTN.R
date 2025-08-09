@@ -1,15 +1,11 @@
 rm(list=ls())
 options(stringsAsFactors = F)
-.libPaths(c("~/SeuratV4", .libPaths()))
-library(dior)
+
 library(Seurat)
 library(ggplot2)
 library(copykat)
 library(infercnv)
 library(AnnoProbe)
-setwd("/Volumes/WD/ccRCC_Epi/Epithelial/Epi_copykat/copykat_result/")
-
-load("/Volumes/WD/ccRCC_Epi/Epithelial/EpithelialRaw.RData")
 table(experiment.aggregate@meta.data[["orig.ident"]],experiment.aggregate@meta.data[["dataset"]])
 
 experiment.aggregate<-subset(experiment.aggregate,dataset=="GSE156632")
@@ -32,7 +28,6 @@ for (pi in c("1","2","3","4","5")) {
   save(results,file = paste("CopyKAT_",unique(scT@meta.data[["dataset"]]),unique(scT@meta.data[["orig.ident"]]),".RData",sep = ""))
 }
 
-load("/Volumes/WD/ccRCC_Epi/Epithelial/EpithelialRaw.RData")
 experiment.aggregate<-subset(experiment.aggregate,dataset=="GSE159115")
 experiment.aggregate@meta.data[["dataset"]]<-as.factor(as.character(experiment.aggregate@meta.data[["dataset"]]))
 experiment.aggregate@meta.data[["group"]]<-as.factor(as.character(experiment.aggregate@meta.data[["group"]]))
@@ -53,7 +48,6 @@ for (pi in c("2","3","5","6")) {
   save(results,file = paste("CopyKAT_",unique(scT@meta.data[["dataset"]]),unique(scT@meta.data[["orig.ident"]]),".RData",sep = ""))
 }
 
-load("/Volumes/WD/ccRCC_Epi/Epithelial/EpithelialRaw.RData")
 experiment.aggregate<-subset(experiment.aggregate,dataset=="GSE178481")
 experiment.aggregate@meta.data[["dataset"]]<-as.factor(as.character(experiment.aggregate@meta.data[["dataset"]]))
 experiment.aggregate@meta.data[["group"]]<-as.factor(as.character(experiment.aggregate@meta.data[["group"]]))
@@ -94,8 +88,6 @@ for (pi in c("PR3.PTumor1","PR3.PTumor2","PR3.PTumor3")) {
                      n.cores=10,output.seg="FLASE")
   save(results,file = paste("CopyKAT_",unique(scT@meta.data[["dataset"]]),unique(scT@meta.data[["orig.ident"]]),".RData",sep = ""))
 }
-
-load("/Volumes/WD/ccRCC_Epi/Epithelial/EpithelialRaw.RData")
 experiment.aggregate<-subset(experiment.aggregate,dataset=="GSE178481")
 experiment.aggregate@meta.data[["dataset"]]<-as.factor(as.character(experiment.aggregate@meta.data[["dataset"]]))
 experiment.aggregate@meta.data[["group"]]<-as.factor(as.character(experiment.aggregate@meta.data[["group"]]))
