@@ -2,9 +2,6 @@ library(SpaCET)
 library(Seurat)
 library(RColorBrewer)
 library(ggplot2)
-
-setwd("/Volumes/Kingston500/ccRCC_Epi/ST_GSE250163/GSM7974884/")
-visiumPath <- file.path("/Volumes/Kingston500/ccRCC_Epi/ST_GSE250163/GSM7974884/")
 SpaCET_obj <- create.SpaCET.object.10X(visiumPath = visiumPath)
 # filter low-quality spots and calculate the QC metrics
 SpaCET_obj <- SpaCET.quality.control(SpaCET_obj, min.genes=10)
@@ -121,10 +118,6 @@ SpaCET_obj <- SpaCET.deconvolution.malignant(SpaCET_obj, coreNo = 8)
 # show cancer cell state fraction of the first five spots
 SpaCET_obj@results$deconvolution$propMat[c("Malignant cell state A","Malignant cell state B"),1:6]
 
-##                           50x102        59x19        14x94     47x13        73x43     61x97
-## Malignant cell state A 0.2295498 9.999900e-01 6.845962e-02 0.2038680 9.608802e-01 0.6517794
-## Malignant cell state B 0.0565137 1.239573e-11 3.921715e-08 0.1861075 2.340661e-09 0.2675332
-
 SpaCET.visualize.spatialFeature(
   SpaCET_obj, 
   spatialType = "CellFraction", 
@@ -141,5 +134,3 @@ SpaCET.visualize.spatialFeature(
   spatialType = "GeneSetScore", 
   spatialFeatures = c("TLS")
 )
-
-save(SpaCET_obj,file = "/Volumes/WD/GSE250163_RAW/GSM7974884/SpaCET.RData")
